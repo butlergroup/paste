@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install Rust
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{matrix.rust}}
           override: true
@@ -45,7 +45,7 @@ jobs:
         shell: bash
         run: |
           unset RUSTFLAGS || true
-          cargo install grcov --locked
+          cargo install grcov --locked=false
 
       - name: Run tests (bless stderr on nightly)
         run: |
