@@ -6,8 +6,8 @@ The following versions of paste are supported under a Service Level Agreement (S
 
 | Version | Supported          |
 | ------- | ------------------ |
-| > 1.0   | :white_check_mark: |
-| < 1.0   | :x:                |
+| > 1.2   | :white_check_mark: |
+| < 1.2   | :x:                |
 
 ## Reporting a Vulnerability
 

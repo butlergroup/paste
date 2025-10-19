@@ -9,9 +9,12 @@ Macros for all your token pasting needs
 ## Info on this fork
 
  - Will be maintained
- - Will pick up where the author left off in terms of semantic versioning (author's last release version was 1.0.15, our first version is 1.0.16)
+ - Created because the "pastey" crate alternative has breaking changes that make a "drop-in" approach not possible 
+ - Will pick up where the author left off in terms of semantic versioning (author's last release version was 1.0.15, our first version is 1.1.0)
  - Dependencies/crates have been updated to their latest versions without build errors
- - Ongoing status of dependencies and platform/unit tests will be available via the badges above
+ - Ongoing status of any security issues, dependencies, and platform/unit tests will be available via the badges above
+
+*Disclaimer:* this project is stable and can be used in production environments, but SLA-based support won't be offered until we're at v1.2 and/or sponsored. :bowtie:
 
 The nightly-only [`concat_idents!`] macro in the Rust standard library is
 notoriously underpowered in that its concatenated identifiers can only refer to
