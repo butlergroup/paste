@@ -4,8 +4,11 @@ use std::str;
 
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
-
-    let Some(version) = rustc_version() else { return };
+    #[allow(clippy::manual_let_else)]
+    let version = match rustc_version() {
+        Some(version) => version,
+        None => return,
+    };
 
     if version.minor >= 80 {
         println!("cargo:rustc-check-cfg=cfg(no_literal_fromstr)");
