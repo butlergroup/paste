@@ -7,7 +7,7 @@ Macros for all your token pasting needs
 [<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/butlergroup/paste/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/butlergroup/paste/actions?query=branch%3Amaster)
 [![CodeQL](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql)
 [![Rust CI/Unit Tests](https://github.com/butlergroup/paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/ci.yml)
-[![dependency status](https://deps.rs/repo/github/butlergroup/paste/status.svg?style=flat-square)](https://deps.rs/repo/github/butlergroup/paste)
+[![dependency status](https://deps.rs/repo/github/butlergroup/paste/status.svg)](https://deps.rs/repo/github/butlergroup/paste)
 [![cargo audit](https://github.com/butlergroup/paste/actions/workflows/cargo-audit.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/cargo-audit.yml)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11322/badge)](https://www.bestpractices.dev/projects/11322)
 [![Scorecard supply-chain security](https://github.com/butlergroup/paste/actions/workflows/scorecard.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/scorecard.yml)
