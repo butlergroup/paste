@@ -1,10 +1,20 @@
 Macros for all your token pasting needs
 =======================================
 
-[<img alt="github" src="https://img.shields.io/badge/github-dtolnay/paste-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/dtolnay/paste)
+[<img alt="github" src="https://img.shields.io/badge/github-butlergroup/paste-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/butlergroup/paste)
 [<img alt="crates.io" src="https://img.shields.io/crates/v/paste.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/paste)
 [<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-paste-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/paste)
-[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/dtolnay/paste/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/dtolnay/paste/actions?query=branch%3Amaster)
+[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/butlergroup/paste/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/butlergroup/paste/actions?query=branch%3Amaster)
+[![CodeQL](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql)
+[![Rust CI/Unit Tests](https://github.com/butlergroup/paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/ci.yml)
+[![dependency status](https://deps.rs/repo/github/butlergroup/paste/status.svg?style=flat-square)](https://deps.rs/repo/github/butlergroup/paste)
+[![cargo audit](https://github.com/butlergroup/paste/actions/workflows/cargo-audit.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/cargo-audit.yml)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11322/badge)](https://www.bestpractices.dev/projects/11322)
+[![Scorecard supply-chain security](https://github.com/butlergroup/paste/actions/workflows/scorecard.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/scorecard.yml)
+[![Microsoft Defender For Devops](https://github.com/butlergroup/paste/actions/workflows/defender-for-devops.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/defender-for-devops.yml)
+[![Coverage Status](https://coveralls.io/repos/github/butlergroup/paste/badge.svg?branch=master)](https://coveralls.io/github/butlergroup/paste?branch=master)
+[![Feature Requests](https://img.shields.io/github/issues/butlergroup/paste/feature-request.svg)](https://github.com/butlergroup/paste/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
+[![Bugs](https://img.shields.io/github/issues/butlergroup/paste/bug.svg)](https://github.com/butlergroup/paste/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
 
 ## Info on this fork
 
@@ -15,6 +25,8 @@ Macros for all your token pasting needs
  - Ongoing status of any security issues, dependencies, and platform/unit tests will be available via the badges above
 
 *Disclaimer:* this project is stable and can be used in production environments, but SLA-based support won't be offered until we're at v1.2 and/or sponsored. :bowtie:
+
+## Original author's notes...
 
 The nightly-only [`concat_idents!`] macro in the Rust standard library is
 notoriously underpowered in that its concatenated identifiers can only refer to
@@ -31,8 +43,6 @@ paste = "1.0"
 ```
 
 This approach works with any Rust compiler 1.31+.
-
-<br>
 
 ## Pasting identifiers
 
@@ -54,8 +64,6 @@ fn main() {
     );
 }
 ```
-
-<br>
 
 ## More elaborate example
 
@@ -107,8 +115,6 @@ fn call_some_getters(s: &S) -> bool {
 }
 ```
 
-<br>
-
 ## Case conversion
 
 Use `$var:lower` or `$var:upper` in the segment list to convert an interpolated
@@ -124,8 +130,6 @@ The precise Unicode conversions are as defined by [`str::to_lowercase`] and
 
 [`str::to_lowercase`]: https://doc.rust-lang.org/std/primitive.str.html#method.to_lowercase
 [`str::to_uppercase`]: https://doc.rust-lang.org/std/primitive.str.html#method.to_uppercase
-
-<br>
 
 ## Pasting documentation strings
 
@@ -149,8 +153,6 @@ pub struct Paste {}
 method_new!(Paste);  // expands to #[doc = "Create a new `Paste` object"]
 ```
 
-<br>
-
 #### License
 
 <sup>
@@ -165,3 +167,7 @@ Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in this crate by you, as defined in the Apache-2.0 license, shall
 be dual licensed as above, without any additional terms or conditions.
 </sub>
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=butlergroup/paste&type=Date)](https://www.star-history.com/#butlergroup/paste&Date)
