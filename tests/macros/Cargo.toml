@@ -1,8 +1,8 @@
 [package]
 name = "paste-test-suite"
 version = "0.0.0"
-authors = ["David Tolnay <dtolnay@gmail.com>"]
-edition = "2018"
+authors = ["David Tolnay <dtolnay@gmail.com>", "The Butler Group LLC <support@butlergroup.net>"]
+edition = "2024"
 publish = false
 
 [lib]
