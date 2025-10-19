@@ -10,7 +10,8 @@ permissions:
   contents: read
 
 env:
-  RUSTFLAGS: -Dwarnings
+  RUSTFLAGS: '-Cinstrument-coverage -Clink-dead-code -Coverflow-checks=off -Dwarnings' 
+  LLVM_PROFILE_FILE: coverage/%p-%m.profraw
 
 jobs:
   pre_ci:
@@ -28,12 +29,21 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{matrix.rust}}
+
       - name: Enable type layout randomization
         run: echo RUSTFLAGS=${RUSTFLAGS}\ -Zrandomize-layout >> $GITHUB_ENV
         if: matrix.rust == 'nightly'
+
+      - name: Install grcov
+        shell: bash
+        run: |
+          unset RUSTFLAGS || true
+          cargo install grcov --locked
+
       - name: Run tests (bless stderr on nightly)
         run: |
           if [ "${{matrix.rust}}" = "nightly" ]; then
@@ -41,11 +51,32 @@ jobs:
           else
             cargo test
           fi
+  
       - uses: actions/upload-artifact@v4
         if: matrix.rust == 'nightly' && always()
         with:
           name: Cargo.lock
           path: Cargo.lock
+
+      - name: Generate coverage report
+        shell: bash
+        run: |
+          mkdir -p coverage
+          grcov . \
+            --binary-path ./target/debug/ \
+            --source-dir . \
+            --output-type lcov \
+            --branch \
+            --ignore-not-existing \
+            --ignore "/*/.cargo/**" \
+            --output-path coverage/lcov.info
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2.3.6
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        with:
+          path-to-lcov: coverage/lcov.info
 
   doc:
     name: Documentation

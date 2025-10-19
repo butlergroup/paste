@@ -13,7 +13,7 @@ repository = "https://github.com/butlergroup/paste"
 [lib]
 proc-macro = true
 
-[dev-dependencies]
+[dependencies]
 paste-test-suite = { version = "0", path = "tests/macros" }
 rustversion = "1.0.22"
 trybuild = { version = "1.0.112", features = ["diff"] }
