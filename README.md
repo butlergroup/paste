@@ -9,8 +9,9 @@ Macros for all your token pasting needs
 ## Info on this fork
 
  - Will be maintained
- - Dependencies/crates have been updated to their latest versions
- - Rust edition upgraded from 2018 to 2024 without any apparent build errors
+ - Will pick up where the author left off in terms of semantic versioning (author's last release version was 1.0.15, our first version is 1.0.16)
+ - Dependencies/crates have been updated to their latest versions without build errors
+ - Ongoing status of dependencies and platform/unit tests will be available via the badges above
 
 The nightly-only [`concat_idents!`] macro in the Rust standard library is
 notoriously underpowered in that its concatenated identifiers can only refer to

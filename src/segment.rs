@@ -1,5 +1,5 @@
 use crate::error::{Error, Result};
-use proc_macro::{token_stream, Delimiter, Ident, Span, TokenTree};
+use proc_macro::{Delimiter, Ident, Span, TokenTree, token_stream};
 use std::iter::Peekable;
 
 pub(crate) enum Segment {
@@ -58,14 +58,14 @@ pub(crate) fn parse(tokens: &mut Peekable<token_stream::IntoIter>) -> Result<Vec
                     let lit = match inner.next() {
                         Some(TokenTree::Literal(lit)) => lit,
                         Some(wrong) => {
-                            return Err(Error::new(wrong.span(), "expected string literal"))
+                            return Err(Error::new(wrong.span(), "expected string literal"));
                         }
                         None => {
                             return Err(Error::new2(
                                 ident.span(),
                                 parenthesized.span(),
                                 "expected string literal as argument to env! macro",
-                            ))
+                            ));
                         }
                     };
                     let lit_string = lit.to_string();
@@ -154,24 +154,18 @@ pub(crate) fn paste(segments: &[Segment]) -> Result<String> {
                 is_lifetime = true;
             }
             Segment::Env(var) => {
-                let resolved = match std::env::var(&var.value) {
-                    Ok(resolved) => resolved,
-                    Err(_) => {
-                        return Err(Error::new(
-                            var.span,
-                            &format!("no such env var: {:?}", var.value),
-                        ));
-                    }
+                let Ok(resolved) = std::env::var(&var.value) else {
+                    return Err(Error::new(
+                        var.span,
+                        &format!("no such env var: {:?}", var.value),
+                    ));
                 };
                 let resolved = resolved.replace('-', "_");
                 evaluated.push(resolved);
             }
             Segment::Modifier(colon, ident) => {
-                let last = match evaluated.pop() {
-                    Some(last) => last,
-                    None => {
-                        return Err(Error::new2(colon.span, ident.span(), "unexpected modifier"))
-                    }
+                let Some(last) = evaluated.pop() else {
+                    return Err(Error::new2(colon.span, ident.span(), "unexpected modifier"));
                 };
                 match ident.to_string().as_str() {
                     "lower" => {

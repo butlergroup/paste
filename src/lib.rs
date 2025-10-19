@@ -379,6 +379,7 @@ fn parse_bracket_as_segments(input: TokenStream, scope: Span) -> Result<Vec<Segm
         if let Segment::String(string) = segment {
             if string.value.starts_with("'\\u{") {
                 let hex = &string.value[4..string.value.len() - 2];
+                #[allow(clippy::collapsible_if)]
                 if let Ok(unsigned) = u32::from_str_radix(hex, 16) {
                     if let Some(ch) = char::from_u32(unsigned) {
                         string.value.clear();
@@ -423,7 +424,7 @@ fn pasted_to_tokens(mut pasted: String, span: Span) -> Result<TokenStream> {
                 Ok(Err(LexError { .. })) | Err(_) => {
                     return Err(Error::new(
                         span,
-                        &format!("`{:?}` is not a valid literal", pasted),
+                        &format!("`{pasted:?}` is not a valid literal"),
                     ));
                 }
             };
@@ -444,7 +445,7 @@ fn pasted_to_tokens(mut pasted: String, span: Span) -> Result<TokenStream> {
         Err(_) => {
             return Err(Error::new(
                 span,
-                &format!("`{:?}` is not a valid identifier", pasted),
+                &format!("`{pasted:?}` is not a valid identifier"),
             ));
         }
     };

@@ -1,11 +1,11 @@
 [package]
 name = "paste"
-version = "1.0.15"
+version = "1.0.16"
 authors = ["David Tolnay <dtolnay@gmail.com>", "The Butler Group LLC <support@butlergroup.net>"]
 categories = ["development-tools", "no-std", "no-std::no-alloc"]
 description = "Macros for all your token pasting needs"
 documentation = "https://docs.rs/paste"
-edition = "2024"
+edition = "2018"
 keywords = ["macros"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/butlergroup/paste"

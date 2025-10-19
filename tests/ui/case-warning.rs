@@ -5,7 +5,7 @@ use paste::paste;
 macro_rules! m {
     ($i:ident) => {
         paste! {
-            pub fn [<foo $i>]() {}
+            fn [<foo $i>]() {}
         }
     };
 }
