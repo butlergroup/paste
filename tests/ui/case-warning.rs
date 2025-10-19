@@ -10,6 +10,6 @@ macro_rules! m {
     };
 }
 
-m!(Bar);
+m!(_bar);
 
 fn main() {}
