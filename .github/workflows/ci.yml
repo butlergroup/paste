@@ -42,10 +42,8 @@ jobs:
         if: matrix.rust == 'nightly'
 
       - name: Install grcov
-        shell: bash
-        run: |
-          unset RUSTFLAGS || true
-          cargo install grcov 
+        if: matrix.rust != '1.76.0'
+        run: cargo install grcov
 
       - name: Run tests (bless stderr on nightly)
         run: |
@@ -62,7 +60,7 @@ jobs:
           path: Cargo.lock
 
       - name: Generate coverage report
-        shell: bash
+        if: matrix.rust != '1.76.0'
         run: |
           mkdir -p coverage
           grcov . \
@@ -75,6 +73,7 @@ jobs:
             --output-path coverage/lcov.info
 
       - name: Coveralls GitHub Action
+        if: matrix.rust != '1.76.0'
         uses: coverallsapp/github-action@v2.3.6
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
@@ -115,7 +114,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@miri
       - run: cargo miri setup
-      - run: cargo miri test
+      - name: Run Miri tests (disable coverage flags)
+        run: |
+          unset RUSTFLAGS
+          cargo miri test
         env:
           MIRIFLAGS: -Zmiri-strict-provenance
 
