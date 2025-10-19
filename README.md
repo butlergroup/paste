@@ -19,7 +19,7 @@ Macros for all your token pasting needs
 ## Info on this fork
 
  - Will be maintained
- - Created because the "pastey" crate alternative has breaking changes that make a "drop-in" approach not possible 
+ - Uses the same name on purpose because alternatives like "pastey" have breaking changes that make a "drop-in" approach impractical
  - Will pick up where the author left off in terms of semantic versioning (author's last release version was 1.0.15, our first version is 1.1.0)
  - Dependencies/crates have been updated to their latest versions without build errors
  - Ongoing status of any security issues, dependencies, and platform/unit tests will be available via the badges above

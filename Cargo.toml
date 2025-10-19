@@ -3,10 +3,10 @@ name = "paste"
 version = "1.1.0"
 authors = ["David Tolnay <dtolnay@gmail.com>", "The Butler Group LLC <support@butlergroup.net>"]
 categories = ["development-tools", "no-std", "no-std::no-alloc"]
-description = "Macros for all your token pasting needs"
+description = "Macros for all your token pasting needs. Maintained, drop-in replacement for paste."
 documentation = "https://docs.rs/paste"
 edition = "2018"
-keywords = ["macros"]
+keywords = ["macros", "paste"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/butlergroup/paste"
 
