@@ -7,6 +7,7 @@ Macros for all your token pasting needs
 [<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/butlergroup/paste/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/butlergroup/paste/actions?query=branch%3Amaster)
 [![CodeQL](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql)
 [![Rust CI/Unit Tests](https://github.com/butlergroup/paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/ci.yml)
+[![Snyk Security-Monitored](https://img.shields.io/badge/Snyk%20Security-Monitored-purple)](https://app.snyk.io/share/784f6fef-6aaf-47ed-81ba-99e05b854665)
 [![dependency status](https://deps.rs/repo/github/butlergroup/paste/status.svg)](https://deps.rs/repo/github/butlergroup/paste)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11322/badge)](https://www.bestpractices.dev/projects/11322)
 [![Scorecard supply-chain security](https://github.com/butlergroup/paste/actions/workflows/scorecard.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/scorecard.yml)
