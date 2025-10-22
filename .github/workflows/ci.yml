@@ -14,8 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  RUSTFLAGS: '-Cinstrument-coverage -Clink-dead-code -Coverflow-checks=off -Dwarnings' 
-  LLVM_PROFILE_FILE: coverage/%p-%m.profraw
+  RUSTFLAGS: '-Dwarnings' 
 
 jobs:
   pre_ci:
@@ -38,27 +37,17 @@ jobs:
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{matrix.rust}}
+          toolchain: ${{ matrix.rust }}
           override: true
-          components: llvm-tools-preview,rustfmt
+          components: rustfmt
 
       - name: Enable type layout randomization
         run: echo RUSTFLAGS=${RUSTFLAGS}\ -Zrandomize-layout >> $GITHUB_ENV
         if: matrix.rust == 'nightly'
 
-      - name: Install grcov
-        if: matrix.rust != '1.76.0'
-        run: cargo install grcov
-
-      - name: Run cargo check with all features
-        run: cargo check --all-features
-
-      - name: Run cargo fmt
-        run: cargo fmt --all -- --check
-
       - name: Run tests (bless stderr on nightly)
         run: |
-          if [ "${{matrix.rust}}" = "nightly" ]; then
+          if [ "${{ matrix.rust }}" = "nightly" ]; then
             TRYBUILD=overwrite cargo test
           else
             cargo test
@@ -70,26 +59,52 @@ jobs:
           name: Cargo.lock
           path: Cargo.lock
 
-      - name: Generate coverage report
-        if: matrix.rust != '1.76.0'
-        run: |
-          mkdir -p coverage
-          grcov . \
-            --binary-path ./target/debug/ \
-            --source-dir . \
-            --output-type lcov \
-            --branch \
-            --ignore-not-existing \
-            --ignore "/*/.cargo/**" \
-            --output-path coverage/lcov.info
+      - name: Run cargo check with all features
+        run: cargo check --all-features
 
-      - name: Coveralls GitHub Action
-        if: matrix.rust != '1.76.0'
-        uses: coverallsapp/github-action@v2.3.6
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        with:
-          path-to-lcov: coverage/lcov.info
+      - name: Run cargo fmt
+        run: cargo fmt --all -- --check
+
+  coverage:
+    runs-on: ubuntu-latest
+    env:
+      RUSTFLAGS: "-Cinstrument-coverage -Clink-dead-code -Coverflow-checks=off"
+      LLVM_PROFILE_FILE: "coverage/%p-%m.profraw"
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Rust with coverage tools
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+        components: llvm-tools-preview
+    - name: Install grcov
+      run: |
+        curl -LsSf https://github.com/mozilla/grcov/releases/download/v0.8.19/grcov-x86_64-unknown-linux-gnu.tar.bz2 | tar xj
+        sudo mv grcov /usr/local/bin/
+    - name: Run tests with coverage
+      run: |
+        cargo clean
+        cargo build --tests
+        cargo test
+    - name: Generate coverage report
+      run: |
+        mkdir -p coverage
+        grcov . \
+          --binary-path ./target/debug/ \
+          --source-dir . \
+          --output-type lcov \
+          --branch \
+          --ignore-not-existing \
+          --ignore "/*/.cargo/**" \
+          --ignore "target/**" \
+          --output-path coverage/lcov.info
+    - name: Coveralls GitHub Action
+      uses: coverallsapp/github-action@v2.3.6
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      with:
+        path-to-lcov: coverage/lcov.info
 
   doc:
     name: Documentation
