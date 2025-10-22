@@ -33,7 +33,7 @@ jobs:
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{matrix.rust}}
+          toolchain: ${{matrix.rust}} --component rustfmt
           override: true
           components: llvm-tools-preview
 
@@ -44,6 +44,12 @@ jobs:
       - name: Install grcov
         if: matrix.rust != '1.76.0'
         run: cargo install grcov
+
+      - name: Run cargo check with all features
+        run: cargo check --all-features
+
+      - name: Run cargo fmt
+        run: cargo fmt --all -- --check
 
       - name: Run tests (bless stderr on nightly)
         run: |
