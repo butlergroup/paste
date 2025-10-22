@@ -1,5 +1,5 @@
 use crate::error::{Error, Result};
-use proc_macro::{Delimiter, Ident, Span, TokenTree, token_stream};
+use proc_macro::{token_stream, Delimiter, Ident, Span, TokenTree};
 use std::iter::Peekable;
 
 pub(crate) enum Segment {
