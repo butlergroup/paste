@@ -33,9 +33,9 @@ jobs:
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{matrix.rust}} --component rustfmt
+          toolchain: ${{matrix.rust}}
           override: true
-          components: llvm-tools-preview
+          components: llvm-tools-preview,rustfmt
 
       - name: Enable type layout randomization
         run: echo RUSTFLAGS=${RUSTFLAGS}\ -Zrandomize-layout >> $GITHUB_ENV
