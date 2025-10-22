@@ -46,6 +46,7 @@ jobs:
         if: matrix.rust == 'nightly'
 
       - name: Run tests (bless stderr on nightly)
+        shell: bash
         run: |
           if [ "${{ matrix.rust }}" = "nightly" ]; then
             TRYBUILD=overwrite cargo test
@@ -54,7 +55,7 @@ jobs:
           fi
   
       - uses: actions/upload-artifact@v4
-        if: matrix.rust == 'nightly' && always()
+        if: matrix.os == 'ubuntu-latest' && matrix.rust == 'nightly' && always()
         with:
           name: Cargo.lock
           path: Cargo.lock
