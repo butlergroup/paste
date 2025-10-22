@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   RUSTFLAGS: '-Cinstrument-coverage -Clink-dead-code -Coverflow-checks=off -Dwarnings' 
   LLVM_PROFILE_FILE: coverage/%p-%m.profraw
@@ -21,11 +25,12 @@ jobs:
     name: Rust ${{matrix.rust}}
     needs: pre_ci
     if: needs.pre_ci.outputs.continue
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         rust: [nightly, beta, stable, 1.76.0]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
