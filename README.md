@@ -19,7 +19,8 @@ Macros for all your token pasting needs
  - Will be maintained (depenencies/crates updated & CVEs addressed in a timely manner, etc.)
  - Will pick up where the author left off in terms of semantic versioning (author's last release version was 1.0.15, our first version is 1.1.0)
  - Several security scanners have been added to the repo to ensure any issues are found quickly
- - Rust edition updated from 2021 to 2024 (without build/unit test errors)
+ - Rust edition updated from 2018 to 2021 (without build/unit test errors)
+ - MSRV (minimum supported Rust version) 1.31 to 1.76 (without build/unit test errors)
 
 *Disclaimer:* this project is stable and can be used in production environments, but SLA-based support won't be offered until we're at v1.2 and/or sponsored. :bowtie:
 

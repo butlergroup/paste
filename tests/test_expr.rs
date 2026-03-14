@@ -227,7 +227,7 @@ mod test_x86_feature_literal {
 
 #[rustversion::since(1.46)]
 mod test_local_setter {
-    // https://github.com/dtolnay/paste/issues/7
+    // https://github.com/butlergroup/paste/issues/7
 
     use paste::paste;
 
@@ -261,7 +261,7 @@ mod test_local_setter {
     }
 }
 
-// https://github.com/dtolnay/paste/issues/85
+// https://github.com/butlergroup/paste/issues/85
 #[test]
 fn test_top_level_none_delimiter() {
     macro_rules! clone {

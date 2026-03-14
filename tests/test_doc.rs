@@ -55,7 +55,7 @@ fn test_case() {
     assert_eq!(doc, expected);
 }
 
-// https://github.com/dtolnay/paste/issues/63
+// https://github.com/butlergroup/paste/issues/63
 #[test]
 fn test_stringify() {
     macro_rules! create {

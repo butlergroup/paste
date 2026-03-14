@@ -164,7 +164,7 @@ mod test_to_camel {
 }
 
 mod test_doc_expr {
-    // https://github.com/dtolnay/paste/issues/29
+    // https://github.com/butlergroup/paste/issues/29
 
     use paste::paste;
 
@@ -186,7 +186,7 @@ mod test_doc_expr {
 }
 
 mod test_type_in_path {
-    // https://github.com/dtolnay/paste/issues/31
+    // https://github.com/butlergroup/paste/issues/31
 
     use paste::paste;
 
@@ -227,7 +227,7 @@ mod test_type_in_path {
 }
 
 mod test_type_in_fn_arg {
-    // https://github.com/dtolnay/paste/issues/38
+    // https://github.com/butlergroup/paste/issues/38
 
     use paste::paste;
 
