@@ -14,7 +14,7 @@ categories = [
 description = "Macros for all your token pasting needs. Maintained, drop-in replacement for paste."
 documentation = "https://docs.rs/macro_paste"
 edition = "2021"
-keywords = ["macros", "macro", "paste", "macro_paste", "ident", "concat"]
+keywords = ["macros", "macro", "paste", "ident", "concat"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/butlergroup/macro_paste"
 
