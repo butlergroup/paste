@@ -136,10 +136,9 @@
 //!     };
 //! }
 //!
-//! #[allow(non_camel_case_types)]
-//! pub struct macro_paste {}
+//! pub struct MacroPaste {}
 //!
-//! method_new!(macro_paste);  // expands to #[doc = "Create a new `macro_paste` object"]
+//! method_new!(MacroPaste);  // expands to #[doc = "Create a new `macro_paste` object"]
 //! ```
 
 #![doc(html_root_url = "https://docs.rs/macro_paste")]
