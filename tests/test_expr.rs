@@ -107,6 +107,7 @@ fn test_env_literal() {
 #[test]
 fn test_env_present() {
     macro_paste! {
+        #[allow(non_camel_case_types)]
         struct [<Lib env!("CARGO_PKG_NAME")>];
 
         let _ = Libmacro_paste;
@@ -162,6 +163,7 @@ fn test_empty() {
 #[test]
 fn test_env_to_lower() {
     macro_paste! {
+        #[allow(non_camel_case_types)]
         struct [<Lib env!("CARGO_PKG_NAME"):lower>];
 
         let _ = Libmacro_paste;

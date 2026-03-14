@@ -36,12 +36,12 @@ fn test_paste_cfg() {
         };
     }
 
-    struct MacroPaste;
+    struct Paste;
 
     #[cfg(target_pointer_width = "64")]
-    m!(MacroPaste, 64);
+    m!(Paste, 64);
     #[cfg(target_pointer_width = "32")]
-    m!(macro_paste, 32);
+    m!(Paste, 32);
 
     let _ = new;
 }
