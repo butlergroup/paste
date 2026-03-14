@@ -25,8 +25,9 @@
 //! together to form a single identifier.
 //!
 //! ```
-//! use macro_paste::macro_paste;
-//!
+//! use macro_paste::macro_paste; // or (for backward/drop-in compatibility):
+//! use macro_paste::macro_paste as paste;
+//! 
 //! macro_paste! {
 //!     // Defines a const called `QRST`.
 //!     const [<Q R S T>]: &str = "success!";
@@ -49,7 +50,8 @@
 //! macro_paste invocation inside of a macro\_rules macro.
 //!
 //! ```
-//! use macro_paste::macro_paste;
+//! use macro_paste::macro_paste; // or (for backward/drop-in compatibility):
+//! use macro_paste::macro_paste as paste;
 //!
 //! macro_rules! make_a_struct_and_getters {
 //!     ($name:ident { $($field:ident),* }) => {
@@ -121,7 +123,9 @@
 //! implicitly concatenated together to form a coherent documentation string.
 //!
 //! ```
-//! use macro_paste::macro_paste;
+//! # extern crate macro_paste;
+//! use macro_paste::macro_paste; // or (for backward/drop-in compatibility):
+//! use macro_paste::macro_paste as paste;
 //!
 //! macro_rules! method_new {
 //!     ($ret:ident) => {
@@ -132,6 +136,7 @@
 //!     };
 //! }
 //!
+//! #[allow(non_camel_case_types)]
 //! pub struct macro_paste {}
 //!
 //! method_new!(macro_paste);  // expands to #[doc = "Create a new `macro_paste` object"]
