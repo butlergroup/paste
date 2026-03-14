@@ -1,14 +1,14 @@
-use paste::paste;
+use macro_paste::macro_paste;
 
-paste! {
+macro_paste! {
     fn [<0 f>]() {}
 }
 
-paste! {
+macro_paste! {
     fn [<f '"'>]() {}
 }
 
-paste! {
+macro_paste! {
     fn [<f "'">]() {}
 }
 

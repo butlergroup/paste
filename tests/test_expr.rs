@@ -1,10 +1,10 @@
 #![allow(clippy::let_underscore_untyped)]
 
-use paste::paste;
+use macro_paste::macro_paste;
 
 #[test]
 fn test_shared_hygiene() {
-    paste! {
+    macro_paste! {
         let [<a a>] = 1;
         assert_eq!([<a a>], 1);
     }
@@ -17,7 +17,7 @@ fn test_repeat() {
 
     macro_rules! routes {
         ($($route:ident),*) => {{
-            paste! {
+            macro_paste! {
                 vec![$( [<ROCKET_ $route>] ),*]
             }
         }}
@@ -31,19 +31,19 @@ fn test_repeat() {
 fn test_literal_to_identifier() {
     const CONST0: &str = "const0";
 
-    let pasted = paste!([<CONST 0>]);
+    let pasted = macro_paste!([<CONST 0>]);
     assert_eq!(pasted, CONST0);
 
-    let pasted = paste!([<CONST '0'>]);
+    let pasted = macro_paste!([<CONST '0'>]);
     assert_eq!(pasted, CONST0);
 
-    let pasted = paste!([<CONST "0">]);
+    let pasted = macro_paste!([<CONST "0">]);
     assert_eq!(pasted, CONST0);
 
-    let pasted = paste!([<CONST r"0">]);
+    let pasted = macro_paste!([<CONST r"0">]);
     assert_eq!(pasted, CONST0);
 
-    let pasted = paste!([<CONST '\u{30}'>]);
+    let pasted = macro_paste!([<CONST '\u{30}'>]);
     assert_eq!(pasted, CONST0);
 }
 
@@ -51,7 +51,7 @@ fn test_literal_to_identifier() {
 fn test_literal_suffix() {
     macro_rules! literal {
         ($bit:tt) => {
-            paste!([<1_u $bit>])
+            macro_paste!([<1_u $bit>])
         };
     }
 
@@ -60,7 +60,7 @@ fn test_literal_suffix() {
 
 #[test]
 fn test_underscore() {
-    paste! {
+    macro_paste! {
         const A_B: usize = 0;
         assert_eq!([<A _ B>], 0);
     }
@@ -68,7 +68,7 @@ fn test_underscore() {
 
 #[test]
 fn test_lifetime() {
-    paste! {
+    macro_paste! {
         #[allow(dead_code)]
         struct S<[<'d e>]> {
             q: &[<'d e>] str,
@@ -78,7 +78,7 @@ fn test_lifetime() {
 
 #[test]
 fn test_keyword() {
-    paste! {
+    macro_paste! {
         struct [<F move>];
 
         let _ = Fmove;
@@ -87,7 +87,7 @@ fn test_keyword() {
 
 #[test]
 fn test_literal_str() {
-    paste! {
+    macro_paste! {
         #[allow(non_camel_case_types)]
         struct [<Foo "Bar-Baz">];
 
@@ -97,7 +97,7 @@ fn test_literal_str() {
 
 #[test]
 fn test_env_literal() {
-    paste! {
+    macro_paste! {
         struct [<Lib env bar>];
 
         let _ = Libenvbar;
@@ -106,16 +106,16 @@ fn test_env_literal() {
 
 #[test]
 fn test_env_present() {
-    paste! {
+    macro_paste! {
         struct [<Lib env!("CARGO_PKG_NAME")>];
 
-        let _ = Libpaste;
+        let _ = Libmacro_paste;
     }
 }
 
 #[test]
 fn test_raw_identifier() {
-    paste! {
+    macro_paste! {
         struct [<F r#move>];
 
         let _ = Fmove;
@@ -136,7 +136,7 @@ fn test_false_start() {
         }
     }
 
-    paste! {
+    macro_paste! {
         let x = [<S as Trait>::f()];
         assert_eq!(x[0], 0);
     }
@@ -146,14 +146,14 @@ fn test_false_start() {
 fn test_local_variable() {
     let yy = 0;
 
-    paste! {
+    macro_paste! {
         assert_eq!([<y y>], 0);
     }
 }
 
 #[test]
 fn test_empty() {
-    paste! {
+    macro_paste! {
         assert_eq!(stringify!([<y y>]), "yy");
         assert_eq!(stringify!([<>]).replace(' ', ""), "[<>]");
     }
@@ -161,38 +161,38 @@ fn test_empty() {
 
 #[test]
 fn test_env_to_lower() {
-    paste! {
+    macro_paste! {
         struct [<Lib env!("CARGO_PKG_NAME"):lower>];
 
-        let _ = Libpaste;
+        let _ = Libmacro_paste;
     }
 }
 
 #[test]
 fn test_env_to_upper() {
-    paste! {
-        const [<LIB env!("CARGO_PKG_NAME"):upper>]: &str = "libpaste";
+    macro_paste! {
+        const [<LIB env!("CARGO_PKG_NAME"):upper>]: &str = "libmacro_paste";
 
-        let _ = LIBPASTE;
+        let _ = LIBMACRO_PASTE;
     }
 }
 
 #[test]
 fn test_env_to_snake() {
-    paste! {
-        const [<LIB env!("CARGO_PKG_NAME"):snake:upper>]: &str = "libpaste";
+    macro_paste! {
+        const [<LIB env!("CARGO_PKG_NAME"):snake:upper>]: &str = "libmacro_paste";
 
-        let _ = LIBPASTE;
+        let _ = LIBMACRO_PASTE;
     }
 }
 
 #[test]
 fn test_env_to_camel() {
-    paste! {
+    macro_paste! {
         #[allow(non_upper_case_globals)]
-        const [<LIB env!("CARGO_PKG_NAME"):camel>]: &str = "libpaste";
+        const [<LIB env!("CARGO_PKG_NAME"):camel>]: &str = "libmacro_paste";
 
-        let _ = LIBPaste;
+        let _ = LIBMacroPaste;
     }
 }
 
@@ -202,9 +202,9 @@ mod test_x86_feature_literal {
     #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
     macro_rules! my_is_x86_feature_detected {
         ($feat:literal) => {
-            use paste::paste;
+            use macro_paste::macro_paste;
 
-            paste! {
+            macro_paste! {
                 #[test]
                 fn test() {
                     let _ = is_x86_feature_detected!($feat);
@@ -227,9 +227,9 @@ mod test_x86_feature_literal {
 
 #[rustversion::since(1.46)]
 mod test_local_setter {
-    // https://github.com/butlergroup/paste/issues/7
+    // https://github.com/butlergroup/macro_paste/issues/7
 
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     #[derive(Default)]
     struct Test {
@@ -244,7 +244,7 @@ mod test_local_setter {
 
     macro_rules! setter {
         ($obj:expr, $field:ident, $value:expr) => {
-            paste! { $obj.[<set_ $field>]($value); }
+            macro_paste! { $obj.[<set_ $field>]($value); }
         };
 
         ($field:ident, $value:expr) => {{
@@ -261,12 +261,12 @@ mod test_local_setter {
     }
 }
 
-// https://github.com/butlergroup/paste/issues/85
+// https://github.com/butlergroup/macro_paste/issues/85
 #[test]
 fn test_top_level_none_delimiter() {
     macro_rules! clone {
         ($val:expr) => {
-            paste! {
+            macro_paste! {
                 $val.clone()
             }
         };

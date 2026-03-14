@@ -1,21 +1,22 @@
 Macros for all your token pasting needs
 =======================================
 
-[<img alt="crates.io" src="https://img.shields.io/crates/v/paste.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/paste)
-[<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-paste-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/paste)
-[![CodeQL](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql)
-[![Rust CI/Unit Tests](https://github.com/butlergroup/paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/ci.yml)
+[<img alt="crates.io" src="https://img.shields.io/crates/v/macro_paste.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/macro_paste)
+[<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-macro_paste-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/macro_paste)
+[![CodeQL](https://github.com/butlergroup/macro_paste/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/github-code-scanning/codeql)
+[![Rust CI/Unit Tests](https://github.com/butlergroup/macro_paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/ci.yml)
 [![Snyk Security-Monitored](https://img.shields.io/badge/Snyk%20Security-Monitored-purple)](https://app.snyk.io/share/784f6fef-6aaf-47ed-81ba-99e05b854665)
-[![dependency status](https://deps.rs/repo/github/butlergroup/paste/status.svg)](https://deps.rs/repo/github/butlergroup/paste)
+[![dependency status](https://deps.rs/repo/github/butlergroup/macro_paste/status.svg)](https://deps.rs/repo/github/butlergroup/macro_paste)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11322/badge)](https://www.bestpractices.dev/projects/11322)
-[![Scorecard supply-chain security](https://github.com/butlergroup/paste/actions/workflows/scorecard.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/scorecard.yml)
-[![Microsoft Defender For Devops](https://github.com/butlergroup/paste/actions/workflows/defender-for-devops.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/defender-for-devops.yml)
-[![Coverage Status](https://coveralls.io/repos/github/butlergroup/paste/badge.svg?branch=master)](https://coveralls.io/github/butlergroup/paste?branch=master)
-[![Feature Requests](https://img.shields.io/github/issues/butlergroup/paste/feature-request.svg)](https://github.com/butlergroup/paste/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
-[![Bugs](https://img.shields.io/github/issues/butlergroup/paste/bug.svg)](https://github.com/butlergroup/paste/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
+[![Scorecard supply-chain security](https://github.com/butlergroup/macro_paste/actions/workflows/scorecard.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/scorecard.yml)
+[![Microsoft Defender For Devops](https://github.com/butlergroup/macro_paste/actions/workflows/defender-for-devops.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/defender-for-devops.yml)
+[![Coverage Status](https://coveralls.io/repos/github/butlergroup/macro_paste/badge.svg?branch=master)](https://coveralls.io/github/butlergroup/macro_paste?branch=master)
+[![Feature Requests](https://img.shields.io/github/issues/butlergroup/macro_paste/feature-request.svg)](https://github.com/butlergroup/macro_paste/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
+[![Bugs](https://img.shields.io/github/issues/butlergroup/macro_paste/bug.svg)](https://github.com/butlergroup/macro_paste/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
 
 ## Info on this fork
 
+ - Originally forked from paste 1.0.15
  - Will be maintained (depenencies/crates updated & CVEs addressed in a timely manner, etc.)
  - Will pick up where the author left off in terms of semantic versioning (author's last release version was 1.0.15, our first version is 1.1.0)
  - Several security scanners have been added to the repo to ensure any issues are found quickly
@@ -32,32 +33,32 @@ existing items, they can never be used to define something new.
 
 [`concat_idents!`]: https://doc.rust-lang.org/std/macro.concat_idents.html
 
-This crate provides a flexible way to paste together identifiers in a macro,
+This crate provides a flexible way to macro_paste together identifiers in a macro,
 including using pasted identifiers to define new items.
 
 ```toml
 [dependencies]
-paste = "1.0"
+macro_paste = "1.0"
 ```
 
 This approach works with any Rust compiler 1.31+.
 
 ## Pasting identifiers
 
-Within the `paste!` macro, identifiers inside `[<`...`>]` are pasted together to
+Within the `macro_paste!` macro, identifiers inside `[<`...`>]` are pasted together to
 form a single identifier.
 
 ```rust
-use paste::paste;
+use macro_paste::macro_paste;
 
-paste! {
+macro_paste! {
     // Defines a const called `QRST`.
     const [<Q R S T>]: &str = "success!";
 }
 
 fn main() {
     assert_eq!(
-        paste! { [<Q R S T>].len() },
+        macro_paste! { [<Q R S T>].len() },
         8,
     );
 }
@@ -66,11 +67,11 @@ fn main() {
 ## More elaborate example
 
 The next example shows a macro that generates accessor methods for some struct
-fields. It demonstrates how you might find it useful to bundle a paste
+fields. It demonstrates how you might find it useful to bundle a macro_paste
 invocation inside of a macro\_rules macro.
 
 ```rust
-use paste::paste;
+use macro_paste::macro_paste;
 
 macro_rules! make_a_struct_and_getters {
     ($name:ident { $($field:ident),* }) => {
@@ -94,7 +95,7 @@ macro_rules! make_a_struct_and_getters {
         //         pub fn get_b(&self) -> &str { &self.b }
         //         pub fn get_c(&self) -> &str { &self.c }
         //     }
-        paste! {
+        macro_paste! {
             impl $name {
                 $(
                     pub fn [<get_ $field>](&self) -> &str {
@@ -116,8 +117,8 @@ fn call_some_getters(s: &S) -> bool {
 ## Case conversion
 
 Use `$var:lower` or `$var:upper` in the segment list to convert an interpolated
-segment to lower- or uppercase as part of the paste. For example, `[<ld_
-$reg:lower _expr>]` would paste to `ld_bc_expr` if invoked with $reg=`Bc`.
+segment to lower- or uppercase as part of the macro_paste. For example, `[<ld_
+$reg:lower _expr>]` would macro_paste to `ld_bc_expr` if invoked with $reg=`Bc`.
 
 Use `$var:snake` to convert CamelCase input to snake\_case.
 Use `$var:camel` to convert snake\_case to CamelCase.
@@ -131,24 +132,24 @@ The precise Unicode conversions are as defined by [`str::to_lowercase`] and
 
 ## Pasting documentation strings
 
-Within the `paste!` macro, arguments to a #\[doc ...\] attribute are implicitly
+Within the `macro_paste!` macro, arguments to a #\[doc ...\] attribute are implicitly
 concatenated together to form a coherent documentation string.
 
 ```rust
-use paste::paste;
+use macro_paste::macro_paste;
 
 macro_rules! method_new {
     ($ret:ident) => {
-        paste! {
+        macro_paste! {
             #[doc = "Create a new `" $ret "` object."]
             pub fn new() -> $ret { todo!() }
         }
     };
 }
 
-pub struct Paste {}
+pub struct macro_paste {}
 
-method_new!(Paste);  // expands to #[doc = "Create a new `Paste` object"]
+method_new!(macro_paste);  // expands to #[doc = "Create a new `macro_paste` object"]
 ```
 
 #### License
@@ -168,4 +169,4 @@ be dual licensed as above, without any additional terms or conditions.
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=butlergroup/paste&type=Date)](https://www.star-history.com/#butlergroup/paste&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=butlergroup/macro_paste&type=Date)](https://www.star-history.com/#butlergroup/macro_paste&Date)

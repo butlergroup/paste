@@ -138,7 +138,7 @@ pub(crate) fn parse(tokens: &mut Peekable<token_stream::IntoIter>) -> Result<Vec
     Ok(segments)
 }
 
-pub(crate) fn paste(segments: &[Segment]) -> Result<String> {
+pub(crate) fn macro_paste(segments: &[Segment]) -> Result<String> {
     let mut evaluated = Vec::new();
     let mut is_lifetime = false;
 

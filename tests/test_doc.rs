@@ -1,20 +1,20 @@
 #![allow(clippy::let_underscore_untyped)]
 
-use paste::paste;
+use macro_paste::macro_paste;
 
 #[test]
 fn test_paste_doc() {
     macro_rules! m {
         ($ret:ident) => {
-            paste! {
+            macro_paste! {
                 #[doc = "Create a new [`" $ret "`] object."]
                 fn new() -> $ret { todo!() }
             }
         };
     }
 
-    struct Paste;
-    m!(Paste);
+    struct MacroPaste;
+    m!(MacroPaste);
 
     let _ = new;
 }
@@ -27,7 +27,7 @@ macro_rules! get_doc {
 
 #[test]
 fn test_escaping() {
-    let doc = paste! {
+    let doc = macro_paste! {
         get_doc!(#[doc = "s\"" r#"r#""#])
     };
 
@@ -37,7 +37,7 @@ fn test_escaping() {
 
 #[test]
 fn test_literals() {
-    let doc = paste! {
+    let doc = macro_paste! {
         get_doc!(#[doc = "int=" 0x1 " bool=" true " float=" 0.01])
     };
 
@@ -47,7 +47,7 @@ fn test_literals() {
 
 #[test]
 fn test_case() {
-    let doc = paste! {
+    let doc = macro_paste! {
         get_doc!(#[doc = "HTTP " get:upper "!"])
     };
 
@@ -55,12 +55,12 @@ fn test_case() {
     assert_eq!(doc, expected);
 }
 
-// https://github.com/butlergroup/paste/issues/63
+// https://github.com/butlergroup/macro_paste/issues/63
 #[test]
 fn test_stringify() {
     macro_rules! create {
         ($doc:expr) => {
-            paste! {
+            macro_paste! {
                 #[doc = $doc]
                 pub struct Struct;
             }

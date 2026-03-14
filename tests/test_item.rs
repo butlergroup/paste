@@ -1,11 +1,11 @@
 #![allow(clippy::let_underscore_untyped)]
 
 mod test_basic {
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     struct Struct;
 
-    paste! {
+    macro_paste! {
         impl Struct {
             fn [<a b c>]() {}
         }
@@ -18,12 +18,12 @@ mod test_basic {
 }
 
 mod test_in_impl {
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     struct Struct;
 
     impl Struct {
-        paste! {
+        macro_paste! {
             fn [<a b c>]() {}
         }
     }
@@ -35,11 +35,11 @@ mod test_in_impl {
 }
 
 mod test_none_delimited_single_ident {
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     macro_rules! m {
         ($id:ident) => {
-            paste! {
+            macro_paste! {
                 fn f() -> &'static str {
                     stringify!($id)
                 }
@@ -56,11 +56,11 @@ mod test_none_delimited_single_ident {
 }
 
 mod test_none_delimited_single_lifetime {
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     macro_rules! m {
         ($life:lifetime) => {
-            paste! {
+            macro_paste! {
                 pub struct S<$life>(#[allow(dead_code)] pub &$life ());
                 impl<$life> S<$life> {
                     fn f() {}
@@ -78,11 +78,11 @@ mod test_none_delimited_single_lifetime {
 }
 
 mod test_to_lower {
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     macro_rules! m {
         ($id:ident) => {
-            paste! {
+            macro_paste! {
                 fn [<my_ $id:lower _here>](_arg: u8) -> &'static str {
                     stringify!([<$id:lower>])
                 }
@@ -99,11 +99,11 @@ mod test_to_lower {
 }
 
 mod test_to_upper {
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     macro_rules! m {
         ($id:ident) => {
-            paste! {
+            macro_paste! {
                 const [<MY_ $id:upper _HERE>]: &str = stringify!([<$id:upper>]);
             }
         };
@@ -118,11 +118,11 @@ mod test_to_upper {
 }
 
 mod test_to_snake {
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     macro_rules! m {
         ($id:ident) => {
-            paste! {
+            macro_paste! {
                 const DEFAULT_SNAKE: &str = stringify!([<$id:snake>]);
                 const LOWER_SNAKE: &str = stringify!([<$id:snake:lower>]);
                 const UPPER_SNAKE: &str = stringify!([<$id:snake:upper>]);
@@ -141,11 +141,11 @@ mod test_to_snake {
 }
 
 mod test_to_camel {
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     macro_rules! m {
         ($id:ident) => {
-            paste! {
+            macro_paste! {
                 const DEFAULT_CAMEL: &str = stringify!([<$id:camel>]);
                 const LOWER_CAMEL: &str = stringify!([<$id:camel:lower>]);
                 const UPPER_CAMEL: &str = stringify!([<$id:camel:upper>]);
@@ -164,13 +164,13 @@ mod test_to_camel {
 }
 
 mod test_doc_expr {
-    // https://github.com/butlergroup/paste/issues/29
+    // https://github.com/butlergroup/macro_paste/issues/29
 
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     macro_rules! doc_expr {
         ($doc:expr) => {
-            paste! {
+            macro_paste! {
                 #[doc = $doc]
                 pub struct S;
             }
@@ -186,9 +186,9 @@ mod test_doc_expr {
 }
 
 mod test_type_in_path {
-    // https://github.com/butlergroup/paste/issues/31
+    // https://github.com/butlergroup/macro_paste/issues/31
 
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     mod keys {
         #[derive(Default)]
@@ -197,7 +197,7 @@ mod test_type_in_path {
 
     macro_rules! types {
         ($mib:ty) => {
-            paste! {
+            macro_paste! {
                 #[derive(Default)]
                 pub struct S(pub keys::$mib);
             }
@@ -206,7 +206,7 @@ mod test_type_in_path {
 
     macro_rules! write {
         ($fn:ident, $field:ty) => {
-            paste! {
+            macro_paste! {
                 pub fn $fn() -> $field {
                     $field::default()
                 }
@@ -227,15 +227,15 @@ mod test_type_in_path {
 }
 
 mod test_type_in_fn_arg {
-    // https://github.com/butlergroup/paste/issues/38
+    // https://github.com/butlergroup/macro_paste/issues/38
 
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     fn jit_address(_node: ()) {}
 
     macro_rules! jit_reexport {
         ($fn:ident, $arg:ident : $typ:ty) => {
-            paste! {
+            macro_paste! {
                 pub fn $fn($arg: $typ) {
                     [<jit_ $fn>]($arg);
                 }
@@ -254,11 +254,11 @@ mod test_type_in_fn_arg {
 mod test_pat_in_expr_position {
     // https://github.com/xiph/rav1e/pull/2324/files
 
-    use paste::paste;
+    use macro_paste::macro_paste;
 
     macro_rules! rav1e_bad {
         ($e:pat) => {
-            paste! {
+            macro_paste! {
                 #[test]
                 fn test() {
                     let _ = $e;

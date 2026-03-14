@@ -1,4 +1,4 @@
-//! [![github]](https://github.com/butlergroup/paste)&ensp;[![crates-io]](https://crates.io/crates/paste)&ensp;[![docs-rs]](https://docs.rs/paste)
+//! [![github]](https://github.com/butlergroup/macro_paste)&ensp;[![crates-io]](https://crates.io/crates/macro_paste)&ensp;[![docs-rs]](https://docs.rs/macro_paste)
 //!
 //! [github]: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 //! [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
@@ -12,7 +12,7 @@
 //!
 //! [`concat_idents!`]: https://doc.rust-lang.org/std/macro.concat_idents.html
 //!
-//! This crate provides a flexible way to paste together identifiers in a macro,
+//! This crate provides a flexible way to macro_paste together identifiers in a macro,
 //! including using pasted identifiers to define new items.
 //!
 //! This approach works with any Rust compiler 1.31+.
@@ -21,20 +21,20 @@
 //!
 //! # Pasting identifiers
 //!
-//! Within the `paste!` macro, identifiers inside `[<`...`>]` are pasted
+//! Within the `macro_paste!` macro, identifiers inside `[<`...`>]` are pasted
 //! together to form a single identifier.
 //!
 //! ```
-//! use paste::paste;
+//! use macro_paste::macro_paste;
 //!
-//! paste! {
+//! macro_paste! {
 //!     // Defines a const called `QRST`.
 //!     const [<Q R S T>]: &str = "success!";
 //! }
 //!
 //! fn main() {
 //!     assert_eq!(
-//!         paste! { [<Q R S T>].len() },
+//!         macro_paste! { [<Q R S T>].len() },
 //!         8,
 //!     );
 //! }
@@ -46,10 +46,10 @@
 //!
 //! The next example shows a macro that generates accessor methods for some
 //! struct fields. It demonstrates how you might find it useful to bundle a
-//! paste invocation inside of a macro\_rules macro.
+//! macro_paste invocation inside of a macro\_rules macro.
 //!
 //! ```
-//! use paste::paste;
+//! use macro_paste::macro_paste;
 //!
 //! macro_rules! make_a_struct_and_getters {
 //!     ($name:ident { $($field:ident),* }) => {
@@ -73,7 +73,7 @@
 //!         //         pub fn get_b(&self) -> &str { &self.b }
 //!         //         pub fn get_c(&self) -> &str { &self.c }
 //!         //     }
-//!         paste! {
+//!         macro_paste! {
 //!             impl $name {
 //!                 $(
 //!                     pub fn [<get_ $field>](&self) -> &str {
@@ -99,8 +99,8 @@
 //! # Case conversion
 //!
 //! Use `$var:lower` or `$var:upper` in the segment list to convert an
-//! interpolated segment to lower- or uppercase as part of the paste. For
-//! example, `[<ld_ $reg:lower _expr>]` would paste to `ld_bc_expr` if invoked
+//! interpolated segment to lower- or uppercase as part of the macro_paste. For
+//! example, `[<ld_ $reg:lower _expr>]` would macro_paste to `ld_bc_expr` if invoked
 //! with $reg=`Bc`.
 //!
 //! Use `$var:snake` to convert CamelCase input to snake\_case.
@@ -117,27 +117,27 @@
 //!
 //! # Pasting documentation strings
 //!
-//! Within the `paste!` macro, arguments to a #\[doc ...\] attribute are
+//! Within the `macro_paste!` macro, arguments to a #\[doc ...\] attribute are
 //! implicitly concatenated together to form a coherent documentation string.
 //!
 //! ```
-//! use paste::paste;
+//! use macro_paste::macro_paste;
 //!
 //! macro_rules! method_new {
 //!     ($ret:ident) => {
-//!         paste! {
+//!         macro_paste! {
 //!             #[doc = "Create a new `" $ret "` object."]
 //!             pub fn new() -> $ret { todo!() }
 //!         }
 //!     };
 //! }
 //!
-//! pub struct Paste {}
+//! pub struct macro_paste {}
 //!
-//! method_new!(Paste);  // expands to #[doc = "Create a new `Paste` object"]
+//! method_new!(macro_paste);  // expands to #[doc = "Create a new `macro_paste` object"]
 //! ```
 
-#![doc(html_root_url = "https://docs.rs/paste/1.0.15")]
+#![doc(html_root_url = "https://docs.rs/macro_paste/1.0.15")]
 #![allow(
     clippy::derive_partial_eq_without_eq,
     clippy::doc_markdown,
@@ -162,7 +162,7 @@ use std::iter;
 use std::panic;
 
 #[proc_macro]
-pub fn paste(input: TokenStream) -> TokenStream {
+pub fn macro_paste(input: TokenStream) -> TokenStream {
     let mut contains_paste = false;
     let flatten_single_interpolation = true;
     match expand(
@@ -184,13 +184,13 @@ pub fn paste(input: TokenStream) -> TokenStream {
 #[doc(hidden)]
 #[proc_macro]
 pub fn item(input: TokenStream) -> TokenStream {
-    paste(input)
+    macro_paste(input)
 }
 
 #[doc(hidden)]
 #[proc_macro]
 pub fn expr(input: TokenStream) -> TokenStream {
-    paste(input)
+    macro_paste(input)
 }
 
 fn expand(
@@ -224,7 +224,7 @@ fn expand(
                 let span = group.span();
                 if delimiter == Delimiter::Bracket && is_paste_operation(&content) {
                     let segments = parse_bracket_as_segments(content, span)?;
-                    let pasted = segment::paste(&segments)?;
+                    let pasted = segment::macro_paste(&segments)?;
                     let tokens = pasted_to_tokens(pasted, span)?;
                     expanded.extend(tokens);
                     *contains_paste = true;
@@ -293,7 +293,7 @@ enum Lookbehind {
     Other,
 }
 
-// https://github.com/butlergroup/paste/issues/26
+// https://github.com/butlergroup/macro_paste/issues/26
 fn is_single_interpolation_group(input: &TokenStream) -> bool {
     #[derive(PartialEq)]
     enum State {

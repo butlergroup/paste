@@ -1,11 +1,11 @@
 #![allow(clippy::let_underscore_untyped)]
 
-use paste::paste;
+use macro_paste::macro_paste;
 use paste_test_suite::paste_test;
 
 #[test]
 fn test_attr() {
-    paste! {
+    macro_paste! {
         #[paste_test(k = "val" "ue")]
         struct A;
 
@@ -29,19 +29,19 @@ fn test_attr() {
 fn test_paste_cfg() {
     macro_rules! m {
         ($ret:ident, $width:expr) => {
-            paste! {
+            macro_paste! {
                 #[cfg(any(feature = "protocol_feature_" $ret:snake, target_pointer_width = "" $width))]
                 fn new() -> $ret { todo!() }
             }
         };
     }
 
-    struct Paste;
+    struct MacroPaste;
 
     #[cfg(target_pointer_width = "64")]
-    m!(Paste, 64);
+    m!(MacroPaste, 64);
     #[cfg(target_pointer_width = "32")]
-    m!(Paste, 32);
+    m!(macro_paste, 32);
 
     let _ = new;
 }
@@ -54,7 +54,7 @@ fn test_path_in_attr() {
         };
     }
 
-    let ty = paste! {
+    let ty = macro_paste! {
         m!(#[x = foo::Bar])
     };
 

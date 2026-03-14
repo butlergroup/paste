@@ -1,10 +1,10 @@
 #![deny(warnings)]
 
-use paste::paste;
+use macro_paste::macro_paste;
 
 macro_rules! m {
     ($i:ident) => {
-        paste! {
+        macro_paste! {
             pub fn [<foo $i>]() {}
         }
     };

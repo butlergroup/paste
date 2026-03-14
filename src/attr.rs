@@ -127,7 +127,7 @@ fn do_paste_name_value_attr(attr: TokenStream, span: Span, leading: usize) -> Re
         }
     }
 
-    let mut lit = segment::paste(&segments)?;
+    let mut lit = segment::macro_paste(&segments)?;
     lit.insert(0, '"');
     lit.push('"');
 

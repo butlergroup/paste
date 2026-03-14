@@ -1,6 +1,6 @@
-use paste::paste;
+use macro_paste::macro_paste;
 
-paste! {
+macro_paste! {
     fn [<a + b>]() {}
 }
 

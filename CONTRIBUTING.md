@@ -1,4 +1,4 @@
-# Welcome to the paste contributing guide!
+# Welcome to the macro_paste contributing guide!
 
 Thank you for investing your time and effort into contributing to our project! Any contribution you make is most welcome :sparkles:.
 
@@ -27,11 +27,11 @@ To navigate our codebase with confidence, please see our [README](/README.md) :c
 
 #### Create a new issue
 
-Once you've cloned the repository and famliarized yourself with our software, if you have a feature request or spot a problem with a component of the code, [search to see if an issue already exists](https://github.com/butlergroup/paste/issues). If a related issue doesn't exist, you can open a new issue using the Issues page of this repository.
+Once you've cloned the repository and famliarized yourself with our software, if you have a feature request or spot a problem with a component of the code, [search to see if an issue already exists](https://github.com/butlergroup/macro_paste/issues). If a related issue doesn't exist, you can open a new issue using the Issues page of this repository.
 
 #### Solve an issue
 
-Scan through our [existing issues](https://github.com/butlergroup/paste/issues) to find one that interests you. You can narrow down the search using `labels` as filters. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a pull request with a fix.
+Scan through our [existing issues](https://github.com/butlergroup/macro_paste/issues) to find one that interests you. You can narrow down the search using `labels` as filters. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a pull request with a fix.
 
 ### Make Changes
 
@@ -54,7 +54,7 @@ Commit and push your changes to your branch once you are happy with them :zap:.
 
 ### Pull Request
 
-Please reference and adhere to our [pull request tepmlate](https://github.com/butlergroup/paste/blob/main/.github/PULL_REQUEST_TEMPLATE.md) when filing your pull request. 
+Please reference and adhere to our [pull request tepmlate](https://github.com/butlergroup/macro_paste/blob/main/.github/PULL_REQUEST_TEMPLATE.md) when filing your pull request. 
 
 Once you've **thoroughly tested and debugged your changes**, create a pull request (sometimes referred to on Github as a PR) in this repo. Describe to the reviewers what changes you've made as well as the purpose of your pull request.
 
@@ -67,4 +67,4 @@ Once you submit your pull request, a team member will review your proposal. We m
 
 ### Review & Merge
 
-After review, your pull request will either be approved (in which case congratulations on your contributions :tada::tada:! The paste team thanks you :sparkles:), or we'll consult with you about additional changes we believe are needed.
+After review, your pull request will either be approved (in which case congratulations on your contributions :tada::tada:! The macro_paste team thanks you :sparkles:), or we'll consult with you about additional changes we believe are needed.
