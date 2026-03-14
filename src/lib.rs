@@ -27,7 +27,7 @@
 //! ```
 //! use macro_paste::macro_paste; // or (for backward/drop-in compatibility):
 //! use macro_paste::macro_paste as paste;
-//! 
+//!
 //! macro_paste! {
 //!     // Defines a const called `QRST`.
 //!     const [<Q R S T>]: &str = "success!";
@@ -123,7 +123,7 @@
 //! implicitly concatenated together to form a coherent documentation string.
 //!
 //! ```
-//! # extern crate macro_paste;
+//! extern crate macro_paste;
 //! use macro_paste::macro_paste; // or (for backward/drop-in compatibility):
 //! use macro_paste::macro_paste as paste;
 //!
@@ -142,7 +142,7 @@
 //! method_new!(macro_paste);  // expands to #[doc = "Create a new `macro_paste` object"]
 //! ```
 
-#![doc(html_root_url = "https://docs.rs/macro_paste/1.0.15")]
+#![doc(html_root_url = "https://docs.rs/macro_paste")]
 #![allow(
     clippy::derive_partial_eq_without_eq,
     clippy::doc_markdown,
@@ -157,6 +157,9 @@ extern crate proc_macro;
 mod attr;
 mod error;
 mod segment;
+
+#[allow(unused_imports)] // allow backward/drop-in compatibility without warnings
+use crate::macro_paste as paste;
 
 use crate::attr::expand_attr;
 use crate::error::{Error, Result};
