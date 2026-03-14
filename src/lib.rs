@@ -123,8 +123,8 @@
 //! implicitly concatenated together to form a coherent documentation string.
 //!
 //! ```
-//! use self::macro_paste; // or (for backward/drop-in compatibility):
-//! use self::macro_paste as paste;
+//! use macro_paste::macro_paste; // or (for backward/drop-in compatibility):
+//! use macro_paste::macro_paste as paste;
 //!
 //! macro_rules! method_new {
 //!     ($ret:ident) => {
