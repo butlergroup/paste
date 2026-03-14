@@ -123,7 +123,6 @@
 //! implicitly concatenated together to form a coherent documentation string.
 //!
 //! ```
-//! extern crate macro_paste;
 //! use self::macro_paste; // or (for backward/drop-in compatibility):
 //! use self::macro_paste as paste;
 //!
@@ -136,9 +135,10 @@
 //!     };
 //! }
 //!
-//! pub struct MacroPaste {}
+//! #[allow(non_camel_case_types)]
+//! pub struct macro_paste {}
 //!
-//! method_new!(MacroPaste);  // expands to #[doc = "Create a new `macro_paste` object"]
+//! method_new!(macro_paste);  // expands to #[doc = "Create a new `macro_paste` object"]
 //! ```
 
 #![doc(html_root_url = "https://docs.rs/macro_paste")]
