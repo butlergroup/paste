@@ -1,10 +1,8 @@
 Macros for all your token pasting needs
 =======================================
 
-[<img alt="github" src="https://img.shields.io/badge/github-butlergroup/paste-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/butlergroup/paste)
 [<img alt="crates.io" src="https://img.shields.io/crates/v/paste.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/paste)
 [<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-paste-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/paste)
-[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/butlergroup/paste/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/butlergroup/paste/actions?query=branch%3Amaster)
 [![CodeQL](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/github-code-scanning/codeql)
 [![Rust CI/Unit Tests](https://github.com/butlergroup/paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/paste/actions/workflows/ci.yml)
 [![Snyk Security-Monitored](https://img.shields.io/badge/Snyk%20Security-Monitored-purple)](https://app.snyk.io/share/784f6fef-6aaf-47ed-81ba-99e05b854665)
@@ -18,11 +16,10 @@ Macros for all your token pasting needs
 
 ## Info on this fork
 
- - Will be maintained
- - Uses the same name on purpose because alternatives like "pastey" have breaking changes that make a "drop-in" approach impractical
+ - Will be maintained (depenencies/crates updated & CVEs addressed in a timely manner, etc.)
  - Will pick up where the author left off in terms of semantic versioning (author's last release version was 1.0.15, our first version is 1.1.0)
- - Dependencies/crates have been updated to their latest versions without build errors
- - Ongoing status of any security issues, dependencies, and platform/unit tests will be available via the badges above
+ - Several security scanners have been added to the repo to ensure any issues are found quickly
+ - Rust edition updated from 2021 to 2024 (without build/unit test errors)
 
 *Disclaimer:* this project is stable and can be used in production environments, but SLA-based support won't be offered until we're at v1.2 and/or sponsored. :bowtie:
 
