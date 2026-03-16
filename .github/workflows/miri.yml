@@ -1,40 +1,39 @@
-{
-  "name": "miri",
-  "permissions": { contents: read },
-  "on":
-    {
-      "push": { "branches": ["master", "v*.x", "ci/*"] },
-      "pull_request": { "branches": ["master", "v*.x"] },
-    },
-  "concurrency":
-    {
-      "group": "${{ github.workflow }}-${{ github.ref }}",
-      "cancel-in-progress": true,
-    },
-  "jobs":
-    {
-      "pre_ci":
-        { "uses": "dtolnay/.github/.github/workflows/pre_ci.yml@master" },
-    },
-  {
-    "miri":
-      {
-        "name": "Miri",
-        "needs": "pre_ci",
-        "if": "needs.pre_ci.outputs.continue",
-        "runs-on": "ubuntu-latest",
-        "timeout-minutes": 45,
-        "steps":
-          [
-            { "uses": "actions/checkout@v4", "name": "Checkout" },
-            { "uses": "dtolnay/rust-toolchain@miri" },
-            { "run": "cargo miri setup" },
-            {
-              "name": "Run Miri tests (disable coverage flags)",
-              "run": "unset RUSTFLAGS && cargo miri test",
-              "env": { "MIRIFLAGS": "-Zmiri-strict-provenance" },
-            },
-          ],
-      },
-  },
-}
+name: miri
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - master
+      - v*.x
+      - ci/*
+  pull_request:
+    branches:
+      - master
+      - v*.x
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre_ci:
+    uses: dtolnay/.github/.github/workflows/pre_ci.yml@master
+
+  miri:
+    name: Miri
+    needs: pre_ci
+    if: needs.pre_ci.outputs.continue
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout
+      - uses: dtolnay/rust-toolchain@miri
+      - run: cargo miri setup
+      - name: Run Miri tests (disable coverage flags)
+        run: unset RUSTFLAGS && cargo miri test
+        env:
+          MIRIFLAGS: -Zmiri-strict-provenance
