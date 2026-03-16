@@ -8,6 +8,7 @@ Macros for all your token pasting needs
 [![Rust CI/Unit Tests](https://github.com/butlergroup/macro_paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/ci.yml)
 [![CIFuzz](https://github.com/butlergroup/macro_paste/actions/workflows/cifuzz.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/cifuzz.yml)
 [![Cross platform tests](https://github.com/butlergroup/macro_paste/actions/workflows/cross_platform.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/cross_platform.yml)
+[![miri](https://github.com/butlergroup/macro_paste/actions/workflows/miri.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/miri.yml)
 [![rust-clippy analyze](https://github.com/butlergroup/macro_paste/actions/workflows/rust-clippy.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/rust-clippy.yml)
 [![Security audit](https://github.com/butlergroup/macro_paste/actions/workflows/security.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/security.yml)
 [![Snyk Security-Monitored](https://img.shields.io/badge/Snyk%20Security-Monitored-purple)](https://app.snyk.io/share/784f6fef-6aaf-47ed-81ba-99e05b854665)
