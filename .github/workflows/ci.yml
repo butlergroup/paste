@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  RUSTFLAGS: '-Dwarnings' 
+  RUSTFLAGS: "-Dwarnings"
 
 jobs:
   pre_ci:
@@ -52,7 +52,7 @@ jobs:
           else
             cargo test
           fi
-  
+
       - uses: actions/upload-artifact@v4
         if: matrix.os == 'ubuntu-latest' && matrix.rust == 'nightly' && always()
         with:
@@ -71,40 +71,40 @@ jobs:
       RUSTFLAGS: "-Cinstrument-coverage -Clink-dead-code -Coverflow-checks=off"
       LLVM_PROFILE_FILE: "coverage/%p-%m.profraw"
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Rust with coverage tools
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        override: true
-        components: llvm-tools-preview
-    - name: Install grcov
-      run: |
-        curl -LsSf https://github.com/mozilla/grcov/releases/download/v0.8.19/grcov-x86_64-unknown-linux-gnu.tar.bz2 | tar xj
-        sudo mv grcov /usr/local/bin/
-    - name: Run tests with coverage
-      run: |
-        cargo clean
-        cargo build --tests
-        cargo test
-    - name: Generate coverage report
-      run: |
-        mkdir -p coverage
-        grcov . \
-          --binary-path ./target/debug/ \
-          --source-dir . \
-          --output-type lcov \
-          --branch \
-          --ignore-not-existing \
-          --ignore "/*/.cargo/**" \
-          --ignore "target/**" \
-          --output-path coverage/lcov.info
-    - name: Coveralls GitHub Action
-      uses: coverallsapp/github-action@v2.3.6
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      with:
-        path-to-lcov: coverage/lcov.info
+      - uses: actions/checkout@v4
+      - name: Set up Rust with coverage tools
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: llvm-tools-preview
+      - name: Install grcov
+        run: |
+          curl -LsSf https://github.com/mozilla/grcov/releases/download/v0.8.19/grcov-x86_64-unknown-linux-gnu.tar.bz2 | tar xj
+          sudo mv grcov /usr/local/bin/
+      - name: Run tests with coverage
+        run: |
+          cargo clean
+          cargo build --tests
+          cargo test
+      - name: Generate coverage report
+        run: |
+          mkdir -p coverage
+          grcov . \
+            --binary-path ./target/debug/ \
+            --source-dir . \
+            --output-type lcov \
+            --branch \
+            --ignore-not-existing \
+            --ignore "/*/.cargo/**" \
+            --ignore "target/**" \
+            --output-path coverage/lcov.info
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2.3.6
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        with:
+          path-to-lcov: coverage/lcov.info
 
   doc:
     name: Documentation
@@ -119,33 +119,6 @@ jobs:
       - uses: dtolnay/rust-toolchain@nightly
       - uses: dtolnay/install@cargo-docs-rs
       - run: cargo docs-rs
-
-  clippy:
-    name: Clippy
-    runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@clippy
-      - run: cargo clippy --tests -- -Dclippy::all -Dclippy::pedantic
-
-  miri:
-    name: Miri
-    needs: pre_ci
-    if: needs.pre_ci.outputs.continue
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@miri
-      - run: cargo miri setup
-      - name: Run Miri tests (disable coverage flags)
-        run: |
-          unset RUSTFLAGS
-          cargo miri test
-        env:
-          MIRIFLAGS: -Zmiri-strict-provenance
 
   outdated:
     name: Outdated

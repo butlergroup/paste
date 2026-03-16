@@ -1,0 +1,22 @@
+[package]
+name = "macro_paste-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4.12"
+syn = { version = "2.0.117", features = ["full"] }
+
+[dependencies.macro_paste]
+path = ".."
+
+[[bin]]
+name = "paste_tokens"
+path = "fuzz_targets/paste_tokens.rs"
+test = false
+doc = false
+bench = false

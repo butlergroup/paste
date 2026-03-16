@@ -1,0 +1,1 @@
+// Empty library required for cargo-fuzz

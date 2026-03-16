@@ -1,0 +1,9 @@
+use macro_paste::paste;
+
+struct Foo;
+
+paste! {
+    impl Foo {
+        fn [<bar baz>]() {}
+    }
+}

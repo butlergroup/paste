@@ -3,8 +3,13 @@ Macros for all your token pasting needs
 
 [<img alt="crates.io" src="https://img.shields.io/crates/v/macro_paste.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/macro_paste)
 [<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-macro_paste-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/macro_paste)
+[![](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![CodeQL](https://github.com/butlergroup/macro_paste/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/github-code-scanning/codeql)
 [![Rust CI/Unit Tests](https://github.com/butlergroup/macro_paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/ci.yml)
+[![CIFuzz](https://github.com/butlergroup/macro_paste/actions/workflows/cifuzz.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/cifuzz.yml)
+[![Cross platform tests](https://github.com/butlergroup/macro_paste/actions/workflows/cross_platform.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/cross_platform.yml)
+[![rust-clippy analyze](https://github.com/butlergroup/macro_paste/actions/workflows/rust-clippy.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/rust-clippy.yml)
+[![Security audit](https://github.com/butlergroup/macro_paste/actions/workflows/security.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/security.yml)
 [![Snyk Security-Monitored](https://img.shields.io/badge/Snyk%20Security-Monitored-purple)](https://app.snyk.io/share/784f6fef-6aaf-47ed-81ba-99e05b854665)
 [![dependency status](https://deps.rs/repo/github/butlergroup/macro_paste/status.svg)](https://deps.rs/repo/github/butlergroup/macro_paste)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11322/badge)](https://www.bestpractices.dev/projects/11322)
