@@ -6,6 +6,7 @@ Macros for all your token pasting needs
 [![](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![CodeQL](https://github.com/butlergroup/macro_paste/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/github-code-scanning/codeql)
 [![Rust CI/Unit Tests](https://github.com/butlergroup/macro_paste/actions/workflows/ci.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/ci.yml)
+[![Dependabot Updates](https://github.com/butlergroup/macro_paste/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/dependabot/dependabot-updates)
 [![CIFuzz](https://github.com/butlergroup/macro_paste/actions/workflows/cifuzz.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/cifuzz.yml)
 [![Cross platform tests](https://github.com/butlergroup/macro_paste/actions/workflows/cross_platform.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/cross_platform.yml)
 [![miri](https://github.com/butlergroup/macro_paste/actions/workflows/miri.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/miri.yml)
