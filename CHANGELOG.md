@@ -4,7 +4,7 @@
 
 
 #### Improvements
-
+- MSRV (minimum supported Rust version) updated from 1.76 to 1.85 without build/unit test errors
 
 #### Fixes
 
