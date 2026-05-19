@@ -15,7 +15,7 @@ Macros for all your token pasting needs
 [![OSV-Scanner](https://github.com/butlergroup/macro_paste/actions/workflows/osv-scanner.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/osv-scanner.yml)
 [![Snyk Security-Monitored](https://img.shields.io/badge/Snyk%20Security-Monitored-purple)](https://app.snyk.io/share/784f6fef-6aaf-47ed-81ba-99e05b854665)
 [![dependency status](https://deps.rs/repo/github/butlergroup/macro_paste/status.svg)](https://deps.rs/repo/github/butlergroup/macro_paste)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11322/badge)](https://www.bestpractices.dev/projects/11322)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12891/badge)](https://www.bestpractices.dev/projects/12891)
 [![Scorecard supply-chain security](https://github.com/butlergroup/macro_paste/actions/workflows/scorecard.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/scorecard.yml)
 [![Microsoft Defender For Devops](https://github.com/butlergroup/macro_paste/actions/workflows/defender-for-devops.yml/badge.svg)](https://github.com/butlergroup/macro_paste/actions/workflows/defender-for-devops.yml)
 [![Coverage Status](https://coveralls.io/repos/github/butlergroup/macro_paste/badge.svg?branch=master)](https://coveralls.io/github/butlergroup/macro_paste?branch=master)
